@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-function Results(){
+const Results = () => {
     return(
         <View>
             <Text>Results</Text>

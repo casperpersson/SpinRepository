@@ -10,7 +10,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+ 
 import AppNavigator from './src/app.navigator';
 
 
