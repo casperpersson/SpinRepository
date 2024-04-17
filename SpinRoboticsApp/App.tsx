@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -12,13 +12,21 @@ import {
 } from 'react-native';
  
 import AppNavigator from './src/app.navigator';
+import Home from './src/screens/Home';
+
 
 
 function App() {
+  const [start, setStart] = useState(false);
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
+    !start ? (
+      <Home setMyState={setStart}></Home>
+    ) : (
+    
       <AppNavigator></AppNavigator>
+    )
   );
 }
 
