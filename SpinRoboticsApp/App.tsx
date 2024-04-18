@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -12,28 +12,53 @@ import {
 } from 'react-native';
  
 import AppNavigator from './src/app.navigator';
+import Header from './src/Components/Header';
+import DropDown from './src/Components/DropDown';
 import Home from './src/screens/Home';
+import Results from './src/screens/Results';
+import Programs from './src/screens/Programs';
+import Settings from './src/screens/Settings';
+import Support from './src/screens/Support';
 
 
 
 function App() {
   const [start, setStart] = useState(false);
   const isDarkMode = useColorScheme() === 'dark';
+  const [screen, setScreen] = useState('Results');
+  const [visible, setVisible] = useState(false);
+
+  const toggleMenu = () => {
+    setVisible(!visible);
+  }
+
+  useEffect(() => {
+    console.log(screen);
+    setVisible(false);
+  }, [screen]);
 
   return (
-    !start ? (
-      <Home setMyState={setStart}></Home>
-    ) : (
+    <View style={styles.container}>
+      {!start ? (
+        <Home setMyState={setStart}></Home>
+      ) : (
+        <>
+          <Header changeScreen={screen} toggleMenu={toggleMenu}></Header>
+          {screen === 'Results' ? <Results /> : null}
+          {screen === 'Programs' ? <Programs /> : null}
+          {screen === 'Settings' ? <Settings /> : null}
+          {screen === 'Support' ? <Support /> : null}
+          {visible ? <DropDown changeScreen={setScreen}></DropDown> : null}
+        </>
+      )}
+    </View>
     
-      <AppNavigator></AppNavigator>
-    )
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
   },
   sectionTitle: {
     fontSize: 24,
