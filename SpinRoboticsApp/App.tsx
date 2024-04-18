@@ -13,6 +13,7 @@ import {
  
 import AppNavigator from './src/app.navigator';
 import Home from './src/screens/Home';
+import Support from './src/screens/Support';
 
 
 
@@ -25,7 +26,7 @@ function App() {
       <Home setMyState={setStart}></Home>
     ) : (
     
-      <AppNavigator></AppNavigator>
+      <Support></Support>
     )
   );
 }
